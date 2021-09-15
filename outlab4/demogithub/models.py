@@ -5,7 +5,7 @@ from django.db.models.base import Model, ModelStateFieldsCacheDescriptor
 # Create your models here.
 class Profile(models.Model):
     """Models the information to be stored of a person"""
-    # user = models.OneToOneField(User)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
     index = models.IntegerField(null=True)
     name = models.CharField(max_length=50,null=True)
     generation = models.IntegerField(null=True)
