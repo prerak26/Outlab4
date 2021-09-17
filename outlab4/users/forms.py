@@ -6,7 +6,7 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=100,required=True)
 
     class Meta:
-        model=User
+        model = User
         fields=(
             'username',
             'first_name',
@@ -15,10 +15,11 @@ class RegistrationForm(UserCreationForm):
             'password2'
         )
 
-    def save(self,commit=True):
-        user=super(RegistrationForm,self).save(commit=False)
+    def save(self, commit=True):
+        user=super(RegistrationForm, self).save(commit=False)
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
+        user.username = self.cleaned_data['username']
         if commit:
             user.save()
         return user

@@ -4,7 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from users.forms import RegistrationForm
 from django.contrib.auth.models import User
-
+from demogithub.models import Profile
+import requests
 # Create your views here.
 def register(request):
     """Register a new user."""
@@ -22,3 +23,8 @@ def register(request):
 def profile(request):
     args={'user':request.user}
     return render(request,'registration/profile.html',args)
+
+def explore(request):
+    """The page with all the people"""
+    args={'user':request.user}
+    return render(request,'explore.html',args)

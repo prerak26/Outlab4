@@ -4,10 +4,50 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}MiniGitHub{% endblock %}</title>
+  <style>
+.header{
+    border: 1px solid grey;
+    background-color: grey;
+    padding: 10px;
+    border-radius: 2px;
+    
+    
+}
+#wrapper{
+  text-align: center;
+}
+  
+.inner{
+  display: inline-block;
+}
+button {
+  background-color:rgba(4, 128, 245, 0.952);
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 5px rgba(4, 128, 245, 0.952);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  position: inherit;
+  display: inline-block;
+  
+  
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+</style>
 </head>
 
 <body>
   <main>
+    <div class ="header">
+      <h3 style="text-align: center; color:yellow;" >Built by 200050080-200050110</h3>
+      <h1 style="text-align: center;" > Welcome to Github Profiles! </h1>
+    </div> 
     {% block content %}
     {% endblock %}
   </main>

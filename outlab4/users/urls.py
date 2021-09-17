@@ -8,4 +8,5 @@ urlpatterns =[
     #Registration Page
     path('register/',views.register,name='register'),
     path('profile/',views.profile,name='profile'),
+    path('explore/',views.explore,name='explore'),
 ]
