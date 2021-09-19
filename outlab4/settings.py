@@ -150,6 +150,6 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 """Setting the Heroku POSTgres database"""
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-# DATABASES['default'] = dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME')
-# DATABASES['default'] = dj_database_url.parse('postgres://USER:PASSWORD@HOST:PORT/NAME', conn_max_age=600)
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(default='postgres://USER:PASSWORD@HOST:PORT/NAME')
+DATABASES['default'] = dj_database_url.parse('postgres://USER:PASSWORD@HOST:PORT/NAME', conn_max_age=600)
