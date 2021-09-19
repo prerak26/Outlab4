@@ -1,53 +1,35 @@
 <!-- templates/base.html -->
+
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 <!DOCTYPE html>
 <html>
 <head>
+  
   <meta charset="utf-8">
-  <title>{% block title %}MiniGitHub{% endblock %}</title>
-  <style>
-.header{
-    border: 1px solid grey;
-    background-color: grey;
-    padding: 10px;
-    border-radius: 2px;
-    
-    
-}
-#wrapper{
-  text-align: center;
-}
+  <title>{% block title %}MiniGitHub{% endblock %}</title>  
   
-.inner{
-  display: inline-block;
-}
-button {
-  background-color:rgba(4, 128, 245, 0.952);
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: 5px rgba(4, 128, 245, 0.952);
-  border-radius: 5px;
-  cursor: pointer;
-  width: 100%;
-  position: inherit;
-  display: inline-block;
-  
-  
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-</style>
 </head>
 
-<body>
+<body style="font-size: 30px;">
   <main>
     <div class ="header">
-      <h3 style="text-align: center; color:yellow;" >Built by 200050080-200050110</h3>
-      <h1 style="text-align: center;" > Welcome to Github Profiles! </h1>
-    </div> 
+      <h6 style="text-align: center; color:#9BA4B4;" >Built by 200050080-200050110</h6>
+      <h1 style="text-align: center; color: aliceblue;" > Welcome to Github Profiles! </h1>
+      
+      <div id="wrapper">
+        <div class="inner">
+          {% if user.is_authenticated %}
+            <button  onclick="window.location.href='/users/explore';">Explore</button>
+            <button  onclick="window.location.href='/users/profile/{{user.username}}';">MyProfile</button>
+            <button  onclick="window.location.href='/users/logout';">Logout</button>
+          {% else %}
+          <button style="width: auto;" onclick="window.location.href='/users/register';">Sign Up</button>
+          <button style="width: auto;" onclick="window.location.href='/users/login';">Login</button>
+          {% endif %}
+        </div>  
+      </div>
+    </div>
     {% block content %}
     {% endblock %}
   </main>

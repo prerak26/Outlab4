@@ -1,20 +1,18 @@
 {% extends 'base.html' %}
-
+{% load static %}
+<link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 {% block title %}Home{% endblock %}
 
 {% block content %}
+
 {% if user.is_authenticated %}
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-  
+
+<p style="text-align: center; font-size: 40px; ">Hi {{ user.username }}!</p>
+<p style="text-align: center; font-size: 40px; ">Let's explore some GitHub Profiles.</p>
+
 {% else %}
-  <p>You are not logged in</p>
-  <p>
-    <a href="{% url 'login' %}">Log In</a>
-  </p>
-  <p>
-    <a href="users/register">Register</a>
-  </p>
+
+  <p style="text-align: center;">You are not logged in, Please Sign-up or Login.</p>
   
 {% endif %}
 {% endblock %}

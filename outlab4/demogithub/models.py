@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 import requests
 from requests.api import request
 from Scripts.fetch_info import search_for_profiles, search_for_repos
+from slugify import slugify
 
 # Create your models here.
 class Profile(models.Model):
@@ -12,13 +13,13 @@ class Profile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     user_name = models.CharField(max_length=200,null=True)
     name = models.CharField(max_length=50,null=True)
+    slug = models.SlugField(max_length=200,null=True)
     last_name = models.CharField(max_length=50,null=True)
     followers = models.IntegerField(null=True)
     last_updated = models.DateTimeField(null=True)
     
     def __str__(self):
         return str(self.name)
-
 
 
 def create_profile(sender,instance,created,**kwargs):
@@ -28,7 +29,7 @@ def create_profile(sender,instance,created,**kwargs):
         new_user.name = instance.first_name
         new_user.user_name = temp_user_name
         new_user.last_name = instance.last_name
-        
+        new_user.slug = slugify(temp_user_name)
         bahutsare,time_which=search_for_profiles(temp_user_name)
         new_user.followers = bahutsare
         new_user.last_updated = time_which

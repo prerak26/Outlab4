@@ -1,9 +1,16 @@
 {% extends "base.html" %}
+<button style="width: auto;" onclick="window.location.href='/users/explore';">Explore</button>
+
+
 {% block title %}Explore{% endblock %}
 {% block content %}
-    <p>
-    {% for i in users %}
-        Hello World.
-    </p>
+<ul >
+    {% for field in users %}
+        <li >
+            <button style="width: auto;" onclick="window.location.href='/users/profile/{{ field.user_name }}'">{{ field.user }}</button>
+        </li>
+    {% empty %}
 
+    {% endfor %}
+</ul>
 {% endblock %}

@@ -1,20 +1,29 @@
-{% extends 'base.html' %}
- 
-{% block head %}
-<title>Profile</title>
-{% endblock %}
-{% block body %}
-<table class="table table-striped table-bordered">
-    {% for field in user %}
-        <tr>
-            <td>{{ field.name }}</td>
-            <td>{{ field.value }}</td>
-        </tr>
-    {% empty %}
-        <tr>
-            <td>No "user" field</td>
-        </tr>
-    {% endfor %} 
-</table>
 
+{% extends 'base.html' %}
+
+{% block content %}
+    <div style= "margin-left: 15%;">
+        <h1>
+            {% if profiles.last_name != None %}
+            {{profiles.name}} {{profiles.last_name}} (@{{profiles.user_name}})
+            {% else %}
+            {{profiles.name}} (@{{profiles.user_name}})
+            {% endif %}
+        </h1>
+            <i>{{ profiles.followers }} followers</i>
+            <br>
+            <i>Profile last updated : {{ profiles.last_updated  }} UTC</i> 
+                {% if user.username == profiles.user_name %}
+                    <a href="/users/profile" style="text-decoration: none;"><i>(Update Now)</i></a>
+                {% endif %}
+            <ul>
+                {% for field in repos.all|dictsortreversed:"stars" %}
+                <li style="list-style-type: disc;">
+                    {{field.name}} - {{ field.stars }} stars
+                </li>
+                {% empty %}
+
+                {% endfor %}
+            </ul>
+        </div>
 {% endblock %}
